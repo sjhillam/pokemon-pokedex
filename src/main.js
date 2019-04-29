@@ -6,6 +6,13 @@ import './registerServiceWorker'
 
 Vue.config.productionTip = false
 
+// Custom Directive
+Vue.directive('focus', {
+  inserted: function (el) {
+    el.focus()
+  }
+})
+
 Axios.defaults.baseURL = 'https://pokeapi.co/api/v2/' // https://pokeapi.co/
 
 Vue.use(VueAxios, Axios)
