@@ -1,6 +1,12 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1>Welcome, Im Professor Oak!</h1>
+    <img class="home-img" src="./../assets/professor_oak.png">
   </div>
 </template>
+<script></script>
+<style>
+.home-img {
+  max-height: 300px;
+}
+</style>
