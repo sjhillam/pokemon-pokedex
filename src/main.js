@@ -24,7 +24,8 @@ Vue.directive('focus', {
   }
 })
 
-Axios.defaults.baseURL = 'https://pokeapi.co/api/v2/' // https://pokeapi.co/
+// https://pokeapi.co/ - Allowed up to 50 requests per minute
+Axios.defaults.baseURL = 'https://pokeapi.co/api/v2/'
 
 Vue.use(VueAxios, Axios)
 

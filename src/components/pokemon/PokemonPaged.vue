@@ -1,12 +1,15 @@
 <template>
   <div class="pokemon-paged">
     <button type="button" @click.prevent="prev()" v-bind:disabled="! hasPrev">Previous</button>
+    <br>
     <button type="button" @click.prevent="next()" v-bind:disabled="! hasNext">Next</button>
 
     <div class="pokemon-paged-page">
       <template v-if="pokemons.length">
         <ul class="pokemon-list">
+          <!-- Custom Directive -->
           <li v-highlight v-for="pokemon in pokemons" v-bind:key="pokemon.id">
+            <!-- for pokemon in pokemons bind the key -->
             {{pokemon.name}}
           </li>
         </ul>
@@ -27,7 +30,7 @@ export default {
     }
   },
   created: function () {
-    const limit = 20
+    const limit = 20 // Set Limit to 20 to lower amount of api calls per minute
     const offset = 0 * limit
     const url = `pokemon/?offset=${offset}&limit=${limit}`
 

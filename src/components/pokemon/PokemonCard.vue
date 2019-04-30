@@ -1,21 +1,19 @@
 <template>
-  <transition name="fade" mode="out-in">
     <div>
       <img v-bind:src="pokemon.sprites.front_default" />
       <p><b>Pokemon ID:</b> {{pokemon.id}}</p>
       <p><b>Pokemon Name:</b> {{pokemon.name}}</p>
       <p><b>Type:</b></p>
       <ul class="type-list">
-        <li v-for="type in types" v-bind:key="type.slot">{{type.type.name}}</li>
+        <li v-hightlight v-for="type in types" v-bind:key="type.slot">{{type.type.name}}</li>
       </ul>
     </div>
-  </transition>
 </template>
 
 <script>
 export default {
   name: 'pokemon-card',
-  props: ['pokemon'], // Communicating between coponents with props
+  props: ['pokemon'], // Communicating between components with props
   computed: {
     types: function () {
       // .slice(0) clones the array (see https://davidwalsh.name/javascript-clone-array)
@@ -32,4 +30,5 @@ export default {
   text-align: left;
   list-style-type: none;
 }
+
 </style>

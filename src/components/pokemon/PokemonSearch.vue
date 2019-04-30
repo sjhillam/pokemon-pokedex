@@ -1,19 +1,27 @@
 <template>
-  <div>
+  <div class="search-form">
     <h2>{{ title }}</h2>
-
+      <button @click="increment">+</button>
+      <button @click="decrement">-</button>
+      <!-- Was in the process of using this numberCount
+           function to update the search field-->
     <form @submit.prevent="search">
       <label for="search">Pokemon ID:</label>
       <br>
+      <!-- {{numberCount}} -->
       <!-- v-model directive creates two-way data binding on form input -->
-      <input class="input" type="number" v-model.number="id" v-focus placeholder="enter pokemon ID">
+      <input class="input" type="number" v-focus v-model.number="id" placeholder="Pokémon ID">
+      <br>
       <br>
       <button type="submit" class="button is-primary">Search</button>
     </form>
 
     <template v-if="details">
-      <pokemon-card v-bind:pokemon="details" ></pokemon-card>
+      <transition name="fade" mode="out-in">
+        <pokemon-card v-bind:pokemon="details" ></pokemon-card>
+      </transition>
     </template>
+
     <template v-else>{{ message }}</template>
 
   </div>
@@ -21,6 +29,22 @@
 
 <script>
 import PokemonCard from '@/components/pokemon/PokemonCard'
+
+import Vue from 'vue'
+import Vuex from 'vuex'
+import { mapState } from 'vuex'
+
+Vue.use(Vuex)
+
+const store = new Vuex.Store({
+  state: {
+    count: 0
+  },
+  mutations: {
+  	increment: state => state.count++,
+    decrement: state => state.count--
+  }
+})
 
 export default {
   name: 'pokemon-search',
@@ -30,12 +54,23 @@ export default {
   data () {
     return {
       title: 'Search by ID',
-      id: 1,
       details: null, // Set details to null, details get updated with search function
+      id: 1,
       message: ''
     }
   },
+  computed: {
+    numberCount () {
+	    return store.state.count
+    }
+  },
   methods: {
+    increment () {
+      store.commit('increment')
+    },
+    decrement () {
+    	store.commit('decrement')
+    },
     // Pokemon Search Function
     search: function () {
       this.details = null
@@ -47,7 +82,7 @@ export default {
           this.message = ''
         })
         .catch(error => { // If ID is not valid give error message
-          this.message = `Failed loading Pokémon data with message: ${error.message}`
+          this.message = `Failed loading Pokémon`
         })
     }
   }
@@ -71,4 +106,5 @@ export default {
     transition: opacity 1s;
     opacity: 0;
 }
+
 </style>
