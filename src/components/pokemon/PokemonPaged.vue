@@ -5,9 +5,9 @@
 
     <div class="pokemon-paged-page">
       <template v-if="pokemons.length">
-        <ul>
-          <li v-for="pokemon in pokemons" v-bind:key="pokemon.id">
-            {{pokemon.name}} {{pokemon.id}}
+        <ul class="pokemon-list">
+          <li v-highlight v-for="pokemon in pokemons" v-bind:key="pokemon.id">
+            {{pokemon.name}}
           </li>
         </ul>
       </template>
@@ -76,22 +76,25 @@ export default {
 </script>
 
 <style>
-  ul {
-    padding: 0;
-    margin-top: 20px;
-    list-style-type: none;
-  }
-  ul li {
-    padding-right: 5px;
-  }
-  ul a {
-    text-decoration: none;
-    color: #CC0000;
-  }
+.pokemon-list {
+  max-width: 150px;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 0;
+  margin-top: 20px;
+  list-style-type: none;
+}
+.pokemon-list li {
+  margin: 5px 0;
+  padding: 5px 0;
+  color: #ffffff;
+  text-transform: capitalize;
+}
 
-  ul a:hover {
-    color: #CC0000;
-    text-decoration: none;
-    font-weight: bold;
-  }
+.pokemon-list li a:hover {
+  color: #CC0000;
+  text-decoration: none;
+  font-weight: bold;
+}
 </style>
