@@ -11,10 +11,10 @@ import './registerServiceWorker'
 Vue.config.productionTip = false
 
 Vue.directive('highlight', {
-    bind(el, binding, vnode) {
-      el.style.backgroundColor = 'red';
+  bind (el, binding, vnode) {
+    el.style.backgroundColor = 'red'
   }
-});
+})
 // Custom directive called v-focus
 Vue.directive('focus', {
   // When element is bound to the DOM

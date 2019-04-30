@@ -32,7 +32,7 @@ import PokemonCard from '@/components/pokemon/PokemonCard'
 
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { mapState } from 'vuex'
+// import { mapState } from 'vuex'
 
 Vue.use(Vuex)
 
@@ -41,7 +41,7 @@ const store = new Vuex.Store({
     count: 0
   },
   mutations: {
-  	increment: state => state.count++,
+    increment: state => state.count++,
     decrement: state => state.count--
   }
 })
@@ -61,7 +61,7 @@ export default {
   },
   computed: {
     numberCount () {
-	    return store.state.count
+      return store.state.count
     }
   },
   methods: {
@@ -69,7 +69,7 @@ export default {
       store.commit('increment')
     },
     decrement () {
-    	store.commit('decrement')
+      store.commit('decrement')
     },
     // Pokemon Search Function
     search: function () {
