@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Axios from 'axios'
 import VueAxios from 'vue-axios'
+import Vuelidate from 'vuelidate'
 
 import router from './router'
 import store from './store'
@@ -28,7 +29,7 @@ Vue.directive('focus', {
 Axios.defaults.baseURL = 'https://pokeapi.co/api/v2/'
 
 Vue.use(VueAxios, Axios)
-
+Vue.use(Vuelidate)
 new Vue({
   router,
   store,

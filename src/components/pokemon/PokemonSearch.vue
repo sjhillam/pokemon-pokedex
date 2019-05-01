@@ -5,12 +5,12 @@
       <button @click="decrement">-</button>
       <!-- Was in the process of using this numberCount
            function to update the search field-->
+      <p>{{numberCount}}</p>
     <form @submit.prevent="search">
       <label for="search">Pokemon ID:</label>
       <br>
-      <!-- {{numberCount}} -->
       <!-- v-model directive creates two-way data binding on form input -->
-      <input class="input" type="number" v-focus v-model.number="id" placeholder="Pokémon ID">
+      <input class="input" type="number" v-focus @input="$v.input.$touch()" v-model.number="id" placeholder="Pokémon ID">
       <br>
       <br>
       <button type="submit" class="button is-primary">Search</button>
@@ -46,6 +46,7 @@ const store = new Vuex.Store({
   }
 })
 
+import { required, lengthrange } from 'vuelidate/lib/validators'
 export default {
   name: 'pokemon-search',
   components: {
@@ -57,6 +58,12 @@ export default {
       details: null, // Set details to null, details get updated with search function
       id: 1,
       message: ''
+    }
+  },
+  validations: {
+    input: {
+      required,
+      lengthrange
     }
   },
   computed: {
